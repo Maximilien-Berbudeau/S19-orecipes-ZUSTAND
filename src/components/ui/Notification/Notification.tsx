@@ -6,7 +6,7 @@ import type { Alert } from '@/@types';
 
 type NotificationProps = {
   alert: Alert;
-  setAlert: React.Dispatch<React.SetStateAction<Alert | null>>;
+  setAlert: (alert: Alert | null) => void;
 };
 
 export default function Notification({ alert, setAlert }: NotificationProps) {

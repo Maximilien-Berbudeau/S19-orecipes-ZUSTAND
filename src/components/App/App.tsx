@@ -3,11 +3,12 @@ import './App.scss';
 import { isAxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router';
-import type { Alert, Recipe } from '@/@types';
+import type { Recipe } from '@/@types';
 import FavoritesPage from '@/pages/FavoritesPage';
 import HomePage from '@/pages/HomePage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import RecipePage from '@/pages/RecipePage';
+import useStore from '@/store';
 import * as api from '@/services/api';
 import * as ls from '@/services/localStorage';
 
@@ -22,11 +23,12 @@ export default function App() {
 
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [alert, setAlert] = useState<Alert | null>(null);
 
   const [isLogged, setIsLogged] = useState(false);
 
-  const [showList, setShowList] = useState(false);
+  const alert = useStore((state) => state.alert);
+  const setAlert = useStore((state) => state.setAlert);
+  const showList = useStore((state) => state.showList);
 
   useEffect(() => {
     async function fetchRecipes() {
@@ -85,7 +87,6 @@ export default function App() {
               isLogged={isLogged}
               setIsLogged={setIsLogged}
               setAlert={setAlert}
-              setShowList={setShowList}
             />
 
             <hr />

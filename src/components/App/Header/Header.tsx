@@ -4,23 +4,25 @@ import { isAxiosError } from 'axios';
 import { useNavigate } from 'react-router';
 import type { Alert } from '@/@types';
 import CartIcon from '@/assets/icons/cart.svg?react';
+import useStore from '@/store';
 import * as api from '@/services/api';
 import * as ls from '@/services/localStorage';
 
 type HeaderProps = {
   isLogged: boolean;
   setIsLogged: React.Dispatch<React.SetStateAction<boolean>>;
-  setAlert: React.Dispatch<React.SetStateAction<Alert | null>>;
-  setShowList: React.Dispatch<React.SetStateAction<boolean>>;
+  setAlert: (alert: Alert | null) => void;
 };
 
 export default function Header({
   isLogged,
   setIsLogged,
   setAlert,
-  setShowList,
 }: HeaderProps) {
   const navigate = useNavigate();
+  
+  const ingredients = useStore((state) => state.ingredients);
+  const toggleList = useStore((state) => state.toggleList);
 
   async function login(event: React.FormEvent<HTMLFormElement>) {
     try {
@@ -87,9 +89,9 @@ export default function Header({
         <button
           type="button"
           className="button button--dark button--tag"
-          data-count={3}
-          aria-label={`Afficher la liste des ingrédients (${3} éléments)`}
-          onClick={() => setShowList((show) => !show)}
+          data-count={ingredients.length}
+          aria-label={`Afficher la liste des ingrédients (${ingredients.length} éléments)`}
+          onClick={toggleList}
         >
           <CartIcon className="cart-icon" />
         </button>

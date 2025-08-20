@@ -5,7 +5,7 @@ import Card from '@/components/Card/Card';
 import * as api from '@/services/api';
 
 type FavoritesPageProps = {
-  setAlert: React.Dispatch<React.SetStateAction<Alert | null>>;
+  setAlert: (alert: Alert | null) => void;
 };
 
 export default function FavoritesPage({ setAlert }: FavoritesPageProps) {
