@@ -1,16 +1,23 @@
-import type { Ingredient } from '@/@types';
+import useStore from '@/store';
+import type { ListIngredient } from '@/store/types';
 
-type ListIngredient = {
-  ingredient: Omit<Ingredient, 'id'>;
+type ListIngredientProps = {
+  ingredient: ListIngredient;
 };
 
-export default function ListIngredient({ ingredient }: ListIngredient) {
-  function updateQuantity() {
-    throw new Error('updateQuantity not implemented.');
+export default function ListIngredient({ ingredient }: ListIngredientProps) {
+  const updateIngredientQuantity = useStore((state) => state.updateIngredientQuantity);
+  const removeIngredientFromList = useStore((state) => state.removeIngredientFromList);
+
+  function updateQuantity(event: React.ChangeEvent<HTMLInputElement>) {
+    const quantity = parseInt(event.target.value, 10);
+    if (!isNaN(quantity)) {
+      updateIngredientQuantity(ingredient.id, quantity);
+    }
   }
 
   function removeIngredient() {
-    throw new Error('removeIngredient not implemented.');
+    removeIngredientFromList(ingredient.id);
   }
 
   return (
