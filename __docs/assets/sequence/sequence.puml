@@ -1,0 +1,11 @@
+@startuml
+actor Client
+participant "Liste" as liste
+
+Client -> liste : Ajouter un ingrédient dans ma liste
+liste -> liste: Vérifier si l'ingrédient est déjà dans la liste
+liste -> liste: Si OUI, augmente la quantité
+liste -> liste: Si NON, ajoute l'ingrédient
+liste -> Client: Confirmer l'ajout de l'ingrédient à la liste
+
+@enduml

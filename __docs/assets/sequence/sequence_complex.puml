@@ -1,0 +1,24 @@
+@startuml
+
+actor Utilisateur
+participant "UI Recette" as UI
+participant "Service de liste de course" as ListService
+participant "Liste de course (état local)" as ShopList
+
+Utilisateur -> UI: Clique sur "Ajouter les ingrédients à la liste"
+UI -> ListService: ajouterIngrédients(listeIngrédients)
+
+loop Pour chaque ingrédient dans la listeIngrédients
+  ListService -> ShopList: findByName(ingrédient.name)
+
+  alt Ingrédient trouvé
+    ShopList -> ShopList: augmenterQuantité(ingrédient, quantité)
+  else Ingrédient non trouvé
+    ShopList -> ShopList: ajouterIngrédient(ingrédient)
+  end
+end
+
+ListService -> UI: Mise à jour terminée
+UI -> Utilisateur: Affiche "Ingrédients ajoutés à la liste"
+
+@enduml

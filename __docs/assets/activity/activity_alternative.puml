@@ -1,0 +1,58 @@
+@startuml
+
+<style>
+  title {
+    FontSize 20
+  }
+  diamond {
+  BackgroundColor #FFFFF
+  LineColor green
+  LineThickness 1.5
+  FontColor green
+  FontSize 13
+  HorizontalAlignment center
+  }
+</style>
+
+title O'Recipes - Diagramme d'activité
+
+start
+:Accéder à la page d'accueil;
+:Voir la liste des recettes;
+
+repeat :Navigation;
+
+switch ( action utilisateur )
+  case ( <font size=13><b>Clique sur une recette )
+    :Affiche les détails de la recette;
+    group  #lightGreen Nouvelle fonctionnalité
+      if (<i> Clique sur \n"Ajouter les ingrédients à la liste") then (<color:green><b> OUI)
+        :Ajoute les ingrédients à la liste;
+        :Visualise la liste des ingrédients pour cette recette;
+      endif;
+    end group
+  case ( <font size=13><b>Clique sur un coeur )
+    if (est authentifié ?) then (oui)
+      :le clic sur le coeur
+      ajoute ou retire la recette
+      de ses favoris
+      (remplissage du coeur);
+      :peut voir la liste de ses favoris;
+    else (non)
+      :afficher l'invitation à se connecter
+      ou à créer un compte;
+    endif;
+  case ( <font size=13><b>Clique sur la liste de courses )
+    group  #lightGreen Nouvelle fonctionnalité
+    :Peut voir / modifier / supprimer \nla liste de courses;
+    end group
+  case ( <font size=13><b>Se connecte \n<font size=13><b> ou \n<font size=13><b> s'enregistre )
+    :les coeurs des recettes
+    préférées sont remplis;
+endswitch
+
+repeat while (<i> Reste sur le site ?)
+
+stop
+
+@enduml

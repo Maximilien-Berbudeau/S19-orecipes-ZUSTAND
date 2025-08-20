@@ -1,0 +1,21 @@
+@use './reset';
+@use './fonts';
+@use './form';
+@use './pages/home';
+@use './pages/not-found';
+@use './pages/recipe';
+@use './variables' as v;
+
+* {
+  scroll-behavior: smooth;
+}
+
+html {
+  line-height: 1.5rem;
+}
+
+body {
+  background: #fff;
+  font-family: v.$font-sans;
+  height: 100vh;
+}

@@ -1,0 +1,28 @@
+@startuml
+
+node "Utilisateur" {
+  [Navigateur Web] as client
+}
+
+node "Surge\n(Hébergement statique)" {
+  [Application React\n(index.html, js, css)] as react
+}
+
+node "API Recettes\n(Externe / REST)" {
+  [GET /api/recipes] as getRecipes
+  [POST /api/login\nretourne JWT] as postLogin
+  [GET /api/favorites\nAuthorization: Bearer <JWT>] as getFavorites
+}
+
+node "Stockage local\n(navigateur)" {
+  [localStorage\nContient le JWT] as localStorage
+}
+
+' Associations
+client --> react : Requête initiale
+react --> getRecipes : Requêtes publiques
+react --> postLogin : Connexion
+react --> getFavorites : Requêtes protégées\navec JWT
+react --> localStorage : Lecture / écriture du token
+
+@enduml

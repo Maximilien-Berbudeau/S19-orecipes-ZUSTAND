@@ -1,0 +1,49 @@
+@startuml usecase
+left to right direction
+
+actor Client as Customer
+
+rectangle "Recettes" {
+    usecase "Voir les recettes disponibles" as ViewRecipes
+    usecase "Voir les détails d'une recette" as ViewRecipeDetails
+}
+
+rectangle "Liste" {
+    usecase "Ajouter un ingrédient" as AddIngredient
+    usecase "Modifier un ingrédient" as EditIngredient
+    usecase "Supprimer un ingrédient" as RemoveIngredient
+    usecase "Vider la liste" as ClearList
+    usecase "Voir le nombre d'ingrédients" as ViewIngredientsNumber
+}
+
+rectangle "Connexion" {
+    usecase "Se connecter" as Login
+    usecase "Se déconnecter" as Logout
+}
+
+rectangle "Favorites\n{requires: Authentification}" as Favorites {
+    usecase "Voir mes recettes favorites" as ViewFavorites
+    usecase "Ajouter une recette favorite" as AddFavorite
+    usecase "Supprimer une recette favorite" as RemoveFavorite
+}
+
+ViewRecipeDetails <-- Customer
+ViewRecipes <-- Customer
+
+ViewIngredientsNumber <-- Customer
+ClearList <-- Customer
+RemoveIngredient <-- Customer
+EditIngredient <-- Customer
+AddIngredient <-- Customer
+
+Customer --> Login
+Customer --> Logout
+
+Customer --> RemoveFavorite
+Customer --> AddFavorite
+Customer --> ViewFavorites
+
+' [Commentaire] alternative au "\n{requires: Authentification}"
+' `include` → dépendance obligatoire
+' Favorites ..> Login: <<includes>>
+@enduml

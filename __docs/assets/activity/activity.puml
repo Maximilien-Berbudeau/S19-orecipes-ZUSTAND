@@ -1,0 +1,40 @@
+@startuml
+start
+
+:Accéder à la page d'accueil;
+:Afficher la liste des recettes;
+
+if (Utilisateur authentifié ?) then (oui)
+  :Afficher l'état des favoris sur chaque recette;
+
+  if (Voir mes recettes préférées ?) then (oui)
+    :Affiche la page des favorites;
+  endif;
+endif
+
+while (Navigation en cours ?)
+
+  if (Cliquer sur un cœur ?) then (oui)
+    if (Authentifié ?) then (oui)
+      :Ajouter ou retirer la recette des favoris;
+    else
+      :Afficher l'invitation à se connecter/s'enregistrer;
+    endif;
+  endif;
+
+  if (Cliquer sur une recette ?) then (oui)
+    :Afficher les détails de la recette;
+
+    if (Ajouter les ingrédients à la liste ?) then (oui)
+      :Ajouter les ingrédients à liste;
+    endif;
+  endif;
+
+  if (Gérer la liste de courses ?) then (oui)
+    :Modifier / Supprimer / Vider la liste;
+  endif;
+
+endwhile (non)
+
+stop
+@enduml

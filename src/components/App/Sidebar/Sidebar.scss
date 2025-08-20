@@ -1,0 +1,28 @@
+@use '@/styles/variables' as v;
+
+.sidebar {
+  background-color: v.$color;
+  color: #fff;
+  
+  ul {
+    list-style: none;
+    padding: 1rlh 0 1rlh 1rlh;
+    position: sticky;
+    top: 1rlh;
+  }
+
+  li {
+    margin: 1rlh 0;
+  }
+
+  a {
+    color: inherit;
+    display: block;
+    text-decoration: none;
+  }
+
+  .active {
+    border-right: 4px solid v.$color-primary;
+    color: v.$color-primary;
+  }
+}

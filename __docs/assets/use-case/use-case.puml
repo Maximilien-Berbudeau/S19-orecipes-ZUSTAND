@@ -1,0 +1,28 @@
+@startuml usecase
+left to right direction
+
+actor Client as c
+
+rectangle "Recettes" {
+  (Voir les recettes disponibles) <-- c
+  (Voir les détails d'une recette) <-- c
+}
+
+rectangle "Liste" {
+  (Gérer les ingrédients dans la liste – CRUD) <-- c
+  (Vider la liste) <-- c 
+  (Voir le nombre d'ingrédients) <-- c
+}
+
+rectangle "Connexion" {
+  c --> (Se connecter)
+  c --> (Se déconnecter)
+}
+
+rectangle "Favorites" {
+  c --> (Voir ses recettes favorites)
+  c --> (Ajouter une recette favorite)
+  c --> (Supprimer une recette favorite)
+}
+
+@enduml

@@ -1,0 +1,50 @@
+@use '@/styles/variables' as v;
+
+.list {
+  font-size: 0.8125rem;
+  padding-top: calc(6rlh + 2px);
+  position: fixed;
+  width: calc(25vw - 1rlh);
+
+  h2 {
+    border-bottom: 1px solid rgba(v.$color-primary, 0.3);
+    color: v.$color-primary;
+    font-size: 2rem;
+    margin-bottom: 1rlh;
+  }
+
+  h3 {
+    font-size: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+  }
+
+  &-top {
+    position: relative;
+  }
+
+  &-empty {
+    font-size: 0.625rem;
+    height: 1rem;
+    line-height: 1rem;
+    position: absolute;
+    right: 0;
+    top: 1rlh;
+  }
+
+  &-ingredient {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 6fr 4fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 0.5rlh;
+    width: 100%;
+    
+    input {
+      max-width: 4rem;
+      padding: 0 0.25rlh;
+    }
+  }
+
+}

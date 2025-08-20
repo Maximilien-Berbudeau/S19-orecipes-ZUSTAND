@@ -1,0 +1,22 @@
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rlh;
+  width: 100%;
+  
+  img {
+    height: 2rlh;
+    width: 2rlh;
+  }
+
+  &-action {
+    align-items: center;
+    display: flex;
+    gap: 1rlh;
+  }
+}
+
+.cart-icon {
+  height: 1rlh;
+}

@@ -1,0 +1,50 @@
+@use '@/styles/variables' as v;
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  transition: all 0.3s ease-out;
+
+  &-content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    flex: 1;
+  }
+
+  &-list {
+    overflow: hidden;
+    transition: width .3s ease-out;
+    white-space: nowrap; 
+    width: 0;
+    
+    &--expanded {
+      width: 25vw;
+    }
+    
+    * {
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}
+
+.content {
+  padding: 1rlh;
+}
+
+hr {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+  height: 0;
+  margin-bottom: 1rlh;
+}
+
+h1, h2, h3 {
+  font-weight: 400;
+}
+
+p {
+  margin-bottom: 1rlh;
+}

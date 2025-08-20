@@ -1,0 +1,41 @@
+.alert {
+  --bg-color: #ccc;
+  --color: #333;
+
+  background-color: var(--bg-color);
+  color: var(--color);
+  height: 2rlh;
+  min-height: 0;
+  left: 0;
+  padding: .5rlh 2rlh;
+  // position: sticky;
+  text-align: center;
+  top: 0;
+  transition: min-height 0.3s linear;
+  width: 100vw;
+
+  &--error {
+    --bg-color: #a00;
+    --color: #fff;
+  }
+
+  &--success {
+    --bg-color: #008017;
+    --color: #fff;
+  }
+}
+
+.slide-down {
+  animation: slideDownFadeIn 0.3s ease-out;
+}
+
+@keyframes slideDownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-1rlh);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

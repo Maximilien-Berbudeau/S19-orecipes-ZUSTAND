@@ -1,0 +1,65 @@
+@use '@/styles/variables' as v;
+
+.recipe {
+  &-header {
+    position: relative;
+  }
+
+  &-title {
+    background: rgba(#000, 0.5);
+    bottom: 1rlh;
+    color: #fff;
+    padding: 1rlh;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+
+  img {
+    border-radius: 0 0 1rlh 1rlh;
+    margin-bottom: 1rlh;
+    width: 100%;
+  }
+
+  ul {
+    list-style: none;
+    margin-bottom: 1rlh;
+  }
+  
+  &-ingredients {
+    padding: 0;
+
+    li {
+      border-bottom: 1px solid #ccc;
+      padding: 0.5rlh;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    span {
+      background: v.$color-primary;
+      border-radius: 4px;
+      color: #fff;
+      margin-right: 0.25rlh;
+      padding: 0 0.25rlh;
+    }
+  }
+
+  &-steps {
+    background: v.$color-border;
+    border-radius: 1rlh 1rlh 0 0;
+    padding: 1rlh;
+
+    li {
+      margin-bottom: 0.5rlh;
+      
+      &::before {
+        color: v.$color-primary;
+        content: '—';
+        margin-right: 0.25rlh;
+      }
+    }
+  }
+}
