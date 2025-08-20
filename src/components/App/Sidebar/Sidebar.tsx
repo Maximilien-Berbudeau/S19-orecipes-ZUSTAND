@@ -19,7 +19,7 @@ export default function SideBar({ recipes, isLogged }: SidebarProps) {
 
         {isLogged && <NavLink to="/favorites">Mes recettes préférées</NavLink>}
 
-        {recipes.map((recipe) => (
+        {Array.isArray(recipes) && recipes.map((recipe) => (
           <li key={recipe.id}>
             <NavLink to={`/recipe/${recipe.slug}`}>{recipe.title}</NavLink>
           </li>
