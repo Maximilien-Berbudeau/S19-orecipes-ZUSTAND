@@ -1,11 +1,9 @@
-import type { Recipe } from '@/@types';
 import Card from '@/components/Card/Card';
+import useStore from '@/store';
 
-type HomePageProps = {
-  recipes: Recipe[];
-};
+export default function HomePage() {
+  const recipes = useStore((state) => state.recipes);
 
-export default function HomePage({ recipes }: HomePageProps) {
   return (
     <main className="home">
       <h1>Les recettes</h1>

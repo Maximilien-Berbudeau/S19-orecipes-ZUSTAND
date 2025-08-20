@@ -6,7 +6,7 @@ import type { GlobalState } from './types';
 // Configuration du store principal avec middlewares
 export const useStore = create<GlobalState>()(
   devtools(
-    immer((set, get) => ({
+    immer((set) => ({
       
       ingredients: [],
       
@@ -70,16 +70,28 @@ export const useStore = create<GlobalState>()(
         }),
       
       fetchRecipes: async () => {
+        const { isAxiosError } = await import('axios');
+        const api = await import('@/services/api');
+        
         set((state) => {
           state.isLoading = true;
           state.error = null;
         });
         
         try {
-          console.log('fetchRecipes: À implémenter dans la phase suivante');
-        } catch (error) {
+          const recipes = await api.getRecipes();
           set((state) => {
-            state.error = error instanceof Error ? error.message : 'Erreur inconnue';
+            state.recipes = recipes;
+            state.isLoading = false;
+            state.error = null;
+          });
+        } catch (error) {
+          const message = isAxiosError(error) || error instanceof Error
+            ? error.message
+            : 'Erreur inconnue';
+          
+          set((state) => {
+            state.error = message;
             state.isLoading = false;
           });
         }

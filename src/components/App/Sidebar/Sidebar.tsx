@@ -1,15 +1,15 @@
 import './Sidebar.scss';
 
 import { NavLink } from 'react-router';
-
-import type { Recipe } from '@/@types';
+import useStore from '@/store';
 
 type SidebarProps = {
-  recipes: Recipe[];
   isLogged: boolean;
 };
 
-export default function SideBar({ recipes, isLogged }: SidebarProps) {
+export default function SideBar({ isLogged }: SidebarProps) {
+  const recipes = useStore((state) => state.recipes);
+
   return (
     <nav className="sidebar">
       <ul>

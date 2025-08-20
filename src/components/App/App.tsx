@@ -1,9 +1,7 @@
 import './App.scss';
 
-import { isAxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router';
-import type { Recipe } from '@/@types';
 import FavoritesPage from '@/pages/FavoritesPage';
 import HomePage from '@/pages/HomePage';
 import NotFoundPage from '@/pages/NotFoundPage';
@@ -21,37 +19,15 @@ import SideBar from './Sidebar/Sidebar';
 export default function App() {
   const location = useLocation();
 
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
   const [isLogged, setIsLogged] = useState(false);
 
+  const isLoading = useStore((state) => state.isLoading);
+  const fetchRecipes = useStore((state) => state.fetchRecipes);
   const alert = useStore((state) => state.alert);
   const setAlert = useStore((state) => state.setAlert);
   const showList = useStore((state) => state.showList);
 
   useEffect(() => {
-    async function fetchRecipes() {
-      try {
-        const recipes = await api.getRecipes();
-
-        setRecipes(recipes);
-        setAlert(null);
-      } catch (error) {
-        const message =
-          isAxiosError(error) || error instanceof Error
-            ? error.message
-            : 'code inconnu';
-
-        setAlert({
-          status: 'error',
-          message,
-        });
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
     function getToken() {
       const token = ls.getToken();
 
@@ -63,7 +39,7 @@ export default function App() {
 
     fetchRecipes();
     getToken();
-  }, []);
+  }, [fetchRecipes]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: scroll when URL changes
   useEffect(() => {
@@ -80,7 +56,7 @@ export default function App() {
 
       <div className="app">
         <div className="app-content">
-          <SideBar recipes={recipes} isLogged={isLogged} />
+          <SideBar isLogged={isLogged} />
 
           <div className="content">
             <Header
@@ -92,7 +68,7 @@ export default function App() {
             <hr />
 
             <Routes>
-              <Route path="/" element={<HomePage recipes={recipes} />} />
+              <Route path="/" element={<HomePage />} />
               <Route path="/recipe/:slug" element={<RecipePage />} />
 
               {isLogged && (
