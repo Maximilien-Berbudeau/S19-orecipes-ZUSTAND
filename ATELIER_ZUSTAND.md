@@ -29,9 +29,5 @@ On externalise la gestion de nos états !
 
 ### Bonus 2
 
-Ajouter la fonctionnalité « Détails d'une recette » depuis le store
-
-### Bonus 3
-
 Remplace le maximum d'états (`useState`) par une gestion centralisée dans le store…  
 Attention aux pièges !

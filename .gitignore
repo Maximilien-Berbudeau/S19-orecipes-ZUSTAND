@@ -25,3 +25,4 @@ dist-ssr
 
 # Variables
 .env
+TASKS.md
